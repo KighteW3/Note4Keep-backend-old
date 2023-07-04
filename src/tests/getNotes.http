@@ -1,0 +1,7 @@
+GET http://localhost:5722/api/notes HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik9zdmkiLCJ1c2VyaWQiOiJnOHlyNHZFMntGfUzCujRxNXI4MjkiLCJlbWFpbCI6bnVsbCwiaWF0IjoxNjg3NzI3MjMxfQ.BLUPNOxp94VOpQDoSMbaVLHqF0zMVn9PNP9LhtpV-HY
+
+{
+  
+}

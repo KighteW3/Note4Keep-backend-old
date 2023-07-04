@@ -1,0 +1,7 @@
+DELETE http://localhost:5722/api/notes/delete-note HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1hc2kiLCJ1c2VyaWQiOiI2NDk2MDMzNjNjNjc2MzZjMmYzZDQwNGEiLCJlbWFpbCI6Im1hc2ljd2FkYXdkQGdtYWlsLmNvbSIsImlhdCI6MTY4NzU1Mjc5Mn0.0rjSDezBmrpB1u5W9TSzOsxnIgsb2YdJP6Bp9-yaTzg
+
+{
+  "note_id": "7ny4Q787_4'1-8w"
+}

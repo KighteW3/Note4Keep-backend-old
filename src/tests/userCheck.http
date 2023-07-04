@@ -1,0 +1,7 @@
+GET http://localhost:5722/api/users/check HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikp1YW4gQWxiZXJ0byIsInVzZXJpZCI6IjY0OTYwMzFhM2M2NzYzNmMyZjNkNDA0NyIsImVtYWlsIjoianVhbmFsYmVyb0BnbWFpbC5jb20iLCJpYXQiOjE2ODc1NTI3NjR9.cAZxzrMP2EjbansQ1vEMKgbawHnYtZJnPYtjffcoclE
+
+{
+  
+}
