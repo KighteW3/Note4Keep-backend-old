@@ -1,6 +1,6 @@
 import getRandomNum from "./getRandomNum";
 
-export default function createRandomString(length: number) {
+export default function createRandomString(length: number, special: boolean) {
   const characters = "abcdefghijklmnopqrstuvwxyz";
   const specialCharacters = ",._-'º{}/|";
   let randomString = "";
@@ -19,7 +19,7 @@ export default function createRandomString(length: number) {
       const randNumNumeric = getRandomNum(0, 9);
 
       randomString = randomString.concat("", randNumNumeric.toString());
-    } else if (randNum === 2) {
+    } else if (randNum === 2 && special) {
       const randNumSpec = getRandomNum(0, specialCharacters.length - 1);
 
       randomString = randomString.concat("", specialCharacters[randNumSpec])

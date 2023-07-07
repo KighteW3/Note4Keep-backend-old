@@ -81,7 +81,7 @@ api.post("/users/create-user", (req, res) => {
         res.status(409).json({ error: "User alredy exists" });
       } else {
         (async () => {
-          const randomId = createRandomString(40);
+          const randomId = createRandomString(40, true);
 
           const passwordHashed = await bcrypt.hash(req.body.password, 10);
 
@@ -182,7 +182,7 @@ api.post("/notes/create-note", (req, res) => {
         (async () => {
           try {
             await notes.create({
-              note_id: createRandomString(40),
+              note_id: createRandomString(40, false),
               title: req.body.title,
               priority: req.body.priority,
               text: req.body.text,
@@ -247,7 +247,7 @@ api.delete("/notes/delete-note", (req, res) => {
           }
         })();
       } else {
-        res.status(401).json({ error: "No authorization provided" });
+        res.status(401).json({ error: "Token dont match with secret key" });
       }
     } else {
       res.status(401).json({ error: "No authorization provided" });
