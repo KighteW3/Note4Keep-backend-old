@@ -2,7 +2,7 @@ POST http://localhost:5722/api/users/create-user HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Masi",
-	"password": "wadadaw",
+    "username": "Felipe",
+	"password": "123",
 	"email": "masicwadawd@gmail.com"
 }

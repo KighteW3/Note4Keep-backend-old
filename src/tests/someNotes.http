@@ -1,9 +1,7 @@
-POST http://localhost:5722/api/notes/create-note HTTP/1.1
+POST http://localhost:5722/api/notes/some-note HTTP/1.1
 content-type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZlbGlwZSIsInVzZXJpZCI6IjV1ODksNHxsNDJuWDhfQjU0MDF7V2hPMsK6fV9JLDQyckQ2Jy00eDMvIiwiZW1haWwiOiJtYXNpY3dhZGF3ZEBnbWFpbC5jb20iLCJpYXQiOjE2ODkxNTI5OTJ9.UZjflg2uqCnWzqMMBs4-Tr9f3R0mtf3YDI2Llm4Gf8E
 
 {
-  "title": "Pollo3",
-  "priority": 5,
-  "text": "Madre mia pollo2"
+  "note_phrase": "Pollo2"
 }

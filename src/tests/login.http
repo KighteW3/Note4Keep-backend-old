@@ -2,6 +2,6 @@ POST http://localhost:5722/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Osvi",
-    "password": "123"
+    "username": "Pedro2",
+    "password": "trabajo"
 }

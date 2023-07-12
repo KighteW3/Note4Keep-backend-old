@@ -205,6 +205,56 @@ api.post("/notes/create-note", (req, res) => {
   }
 });
 
+api.post("/notes/some-note", (req, res) => {
+  if (
+    req.method === "POST" &&
+    req.headers.authorization &&
+    req.body.note_phrase
+  ) {
+    const auth = req.headers.authorization;
+
+    if (auth && auth.toLowerCase().startsWith("bearer")) {
+      const token = auth.substring(7);
+      const secret = process.env.SECRET || "t7l-84Ql|/{Q5./Db6.k";
+
+      let tokenDecoded;
+
+      try {
+        tokenDecoded = jwt.verify(token, secret) as decodedTokens;
+      } catch (e) {
+        tokenDecoded = null;
+      }
+
+      if (tokenDecoded && tokenDecoded.userid) {
+        (async () => {
+          try {
+            const result = await notes.find(
+              { user: tokenDecoded.userid, title: req.body.note_phrase },
+              { _id: 0, user: 0, __v: 0 }
+            );
+
+            if (result.length > 0) {
+              res.status(200).json({ result });
+            } else {
+              res.status(404).json({ error: "No notes were found" });
+            }
+          } catch (e) {
+            res
+              .status(500)
+              .json({ error: "Something gone wrong with the server" });
+          }
+        })();
+      } else {
+        res.status(401).json({ error: "Invalid token" });
+      }
+    } else {
+      res.status(401).json({ error: "No auth provided" });
+    }
+  } else {
+    res.status(400);
+  }
+});
+
 api.delete("/notes/delete-note", (req, res) => {
   if (req.method === "DELETE" && req.body.note_id) {
     const auth = req.headers.authorization;
