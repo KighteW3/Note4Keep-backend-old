@@ -13,7 +13,10 @@ export default function createRandomString(length: number, special: boolean) {
       const randNumSize = getRandomNum(0, 1);
 
       randNumSize > 0
-        ? (randomString = randomString.concat("", characters[randNumAlph].toUpperCase()))
+        ? (randomString = randomString.concat(
+            "",
+            characters[randNumAlph].toUpperCase()
+          ))
         : (randomString = randomString.concat("", characters[randNumAlph]));
     } else if (randNum === 1) {
       const randNumNumeric = getRandomNum(0, 9);
@@ -22,7 +25,10 @@ export default function createRandomString(length: number, special: boolean) {
     } else if (randNum === 2 && special) {
       const randNumSpec = getRandomNum(0, specialCharacters.length - 1);
 
-      randomString = randomString.concat("", specialCharacters[randNumSpec])
+      randomString = randomString.concat("", specialCharacters[randNumSpec]);
+    } else {
+      const randNumNumeric = getRandomNum(0, 9);
+      randomString = randomString.concat("", randNumNumeric.toString());
     }
   }
 
