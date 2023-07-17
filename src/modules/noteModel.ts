@@ -6,6 +6,7 @@ const noteShema = new Schema({
   priority: Number,
   text: String,
   user: String,
+  date: Date
 });
 
 export const notes = model("notes", noteShema);

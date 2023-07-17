@@ -187,6 +187,7 @@ api.post("/notes/create-note", (req, res) => {
               priority: req.body.priority,
               text: req.body.text,
               user: tokenDecoded.userid,
+              date: new Date(),
             });
 
             res.status(200).json({ response: "Note created" });
@@ -326,10 +327,9 @@ api.get("/notes", (req, res) => {
       if (tokenDecoded && tokenDecoded.userid) {
         (async () => {
           try {
-            const result = await notes.find(
-              { user: tokenDecoded.userid },
-              { _id: 0, user: 0, __v: 0 }
-            );
+            const result = await notes
+              .find({ user: tokenDecoded.userid }, { _id: 0, user: 0, __v: 0 })
+              .sort({ date: -1 });
 
             if (result.length > 0) {
               res.status(200).json({ result });
