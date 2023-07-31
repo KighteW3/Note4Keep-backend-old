@@ -358,5 +358,5 @@ api.get("/notes", (req, res) => {
 app.set("host", HOST);
 
 app.listen(PORT, () => {
-  console.log(`App listening from port ${PORT}`);
+  console.log(`App listening from port ${PORT} on ${HOST} ip`);
 });
