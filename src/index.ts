@@ -228,11 +228,15 @@ api.post("/notes/some-note", (req, res) => {
 
       if (tokenDecoded && tokenDecoded.userid) {
         (async () => {
+          const regex = new RegExp(".*" + req.body.note_phrase + ".*", "i");
+
           try {
-            const result = await notes.find(
-              { user: tokenDecoded.userid, title: req.body.note_phrase },
-              { _id: 0, user: 0, __v: 0 }
-            );
+            const result = await notes
+              .find(
+                { user: tokenDecoded.userid, title: regex },
+                { _id: 0, user: 0, __v: 0 }
+              )
+              .sort({ date: -1 });
 
             if (result.length > 0) {
               res.status(200).json({ result });
