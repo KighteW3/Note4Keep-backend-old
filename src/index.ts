@@ -28,6 +28,7 @@ interface decodedTokens {
   iat: number;
 }
 
+// Users
 api.get("/users/check", (req, res) => {
   if (req.method === "GET" && req.headers.authorization) {
     const auth = req.headers.authorization;
@@ -74,6 +75,7 @@ api.get("/users/check", (req, res) => {
   }
 });
 
+// Register
 api.post("/users/create-user", (req, res) => {
   if (req.method === "POST" && req.body.username && req.body.password) {
     users.findOne({ username: req.body.username }).then((result) => {
@@ -116,6 +118,7 @@ api.post("/users/create-user", (req, res) => {
   }
 });
 
+// LOGIN
 api.post("/users/login", (req, res) => {
   if (req.method === "POST" && req.body.username && req.body.password) {
     users.findOne({ username: req.body.username }).then((result) => {
@@ -206,6 +209,7 @@ api.post("/notes/create-note", (req, res) => {
   }
 });
 
+// Searching notes
 api.post("/notes/some-note", (req, res) => {
   if (
     req.method === "POST" &&
@@ -260,6 +264,7 @@ api.post("/notes/some-note", (req, res) => {
   }
 });
 
+// Deleting notes
 api.delete("/notes/delete-note", (req, res) => {
   if (req.method === "DELETE" && req.body.note_id) {
     const auth = req.headers.authorization;
@@ -312,6 +317,44 @@ api.delete("/notes/delete-note", (req, res) => {
   }
 });
 
+api.delete("/notes/delete-all-notes", (req, res) => {
+  if (req.method === "DELETE") {
+    const auth = req.headers.authorization;
+
+    if (auth && auth.toLowerCase().startsWith("bearer")) {
+      const token = auth.substring(7);
+      const secret = process.env.SECRET || "t7l-84Ql|/{Q5./Db6.k";
+
+      let tokenDecoded;
+
+      try {
+        tokenDecoded = jwt.verify(token, secret) as decodedTokens;
+      } catch (e) {
+        tokenDecoded = null;
+      }
+
+      if (tokenDecoded && tokenDecoded.userid) {
+        (async () => {
+          try {
+            await notes.deleteMany({});
+          } catch (e) {
+            res
+              .status(500)
+              .json({ error: "Something gone wrong with the server" });
+          }
+        })();
+      } else {
+        res.status(401).json({ error: "Token dont match with secret key" });
+      }
+    } else {
+      res.status(401).json({ error: "No authorization provided" });
+    }
+  } else {
+    res.status(400).json({ error: "Bad request" });
+  }
+});
+
+// Getting notes
 api.get("/notes", (req, res) => {
   if (req.method === "GET" && req.headers.authorization) {
     const auth = req.headers.authorization;
