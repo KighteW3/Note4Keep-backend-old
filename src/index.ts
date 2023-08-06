@@ -317,6 +317,7 @@ api.delete("/notes/delete-note", (req, res) => {
   }
 });
 
+// Deleteing all notes
 api.delete("/notes/delete-all-notes", (req, res) => {
   if (req.method === "DELETE") {
     const auth = req.headers.authorization;
@@ -336,11 +337,11 @@ api.delete("/notes/delete-all-notes", (req, res) => {
       if (tokenDecoded && tokenDecoded.userid) {
         (async () => {
           try {
-            await notes.deleteMany({});
+            await notes.deleteMany({ user_id: tokenDecoded.userid });
           } catch (e) {
             res
               .status(500)
-              .json({ error: "Something gone wrong with the server" });
+              .json({ error: `Cannot delete ${tokenDecoded.username} notes` });
           }
         })();
       } else {
