@@ -13,7 +13,6 @@ import { notes } from "./modules/noteModel";
 
 const app = express();
 const PORT = process.env.PORT || 3003;
-const HOST = "192.168.1.192";
 
 const api = express.Router();
 app.use(cors());
@@ -403,8 +402,6 @@ api.get("/notes", (req, res) => {
   }
 });
 
-app.set("host", HOST);
-
 app.listen(PORT, () => {
-  console.log(`App listening from port ${PORT} on ${HOST} ip`);
+  console.log(`App listening from port ${PORT}.`);
 });
