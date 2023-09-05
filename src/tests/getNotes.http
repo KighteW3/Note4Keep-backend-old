@@ -1,4 +1,4 @@
-GET http://localhost:5722/api/notes HTTP/1.1
+GET http://note4keep-backend.onrender.com/api/notes HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZlbGlwZSIsInVzZXJpZCI6IjV1ODksNHxsNDJuWDhfQjU0MDF7V2hPMsK6fV9JLDQyckQ2Jy00eDMvIiwiZW1haWwiOiJtYXNpY3dhZGF3ZEBnbWFpbC5jb20iLCJpYXQiOjE2ODkxNTI5OTJ9.UZjflg2uqCnWzqMMBs4-Tr9f3R0mtf3YDI2Llm4Gf8E
 
