@@ -336,7 +336,10 @@ api.delete("/notes/delete-all-notes", (req, res) => {
       if (tokenDecoded && tokenDecoded.userid) {
         (async () => {
           try {
-            await notes.deleteMany({ user_id: tokenDecoded.userid });
+            await notes.deleteMany({ user: tokenDecoded.userid });
+            res
+              .status(200)
+              .json({ result: `Deleted all ${tokenDecoded.username} notes` });
           } catch (e) {
             res
               .status(500)
