@@ -283,7 +283,7 @@ api.post("/notes/spec-note", (req, res) => {
         (async () => {
           try {
             const result = await notes.findOne(
-              { note_id: req.body.note_id },
+              { note_id: req.body.note_id, user: tokenDecoded.userid },
               { _id: 0, user: 0, __v: 0 }
             );
 
