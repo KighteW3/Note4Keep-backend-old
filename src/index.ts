@@ -166,6 +166,15 @@ api.post("/notes/create-note", (req, res) => {
     req.body.priority &&
     req.body.text
   ) {
+    if (
+      !req.body.title.trim() ||
+      req.body.title.trim() === "" ||
+      !req.body.text.trim() ||
+      req.body.text.trim() === ""
+    ) {
+      res.status(400).json({ error: "Bad request" });
+    }
+
     const auth = req.headers.authorization;
 
     if (auth && auth.toLowerCase().startsWith("bearer")) {
